@@ -39,9 +39,21 @@ const Header = () => {
           </button>
         </nav>
 
-        <Button variant="secondary" className="bg-beige text-surface-darker hover:bg-beige-dark">
-          Comprar boletas
-        </Button>
+        <div className="flex items-center space-x-4">
+          <Button 
+            variant="outline" 
+            onClick={() => window.location.href = '/login'}
+            className="border-beige text-beige hover:bg-beige hover:text-surface-darker transition-smooth"
+          >
+            Iniciar sesión
+          </Button>
+          <Button 
+            onClick={() => window.location.href = '/register'}
+            className="bg-beige text-surface-darker hover:bg-beige-dark transition-smooth"
+          >
+            Registrarse
+          </Button>
+        </div>
       </div>
     </header>
   );
