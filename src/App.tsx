@@ -5,7 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
+import Eventos from "./pages/Eventos";
+import Ventajas from "./pages/Ventajas";
+import Contacto from "./pages/Contacto";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CompradorEventos from "./pages/CompradorEventos";
@@ -25,7 +28,11 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/eventos" element={<Eventos />} />
+            <Route path="/ventajas" element={<Ventajas />} />
+            <Route path="/contacto" element={<Contacto />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             

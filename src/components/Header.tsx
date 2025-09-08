@@ -1,42 +1,57 @@
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const location = useLocation();
 
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <div className="text-2xl font-bold text-foreground">Tickr</div>
-        </div>
+        <Link to="/home" className="flex items-center space-x-2">
+          <div className="text-2xl font-bold text-foreground hover:text-beige transition-colors">Tickr</div>
+        </Link>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <button 
-            onClick={() => scrollToSection('eventos')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+          <Link 
+            to="/home"
+            className={`transition-colors ${
+              location.pathname === '/' || location.pathname === '/home' 
+                ? 'text-beige' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/eventos"
+            className={`transition-colors ${
+              location.pathname === '/eventos' 
+                ? 'text-beige' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
           >
             Eventos
-          </button>
-          <button 
-            onClick={() => scrollToSection('como-funciona')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Cómo funciona
-          </button>
-          <button 
-            onClick={() => scrollToSection('ventajas')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+          </Link>
+          <Link 
+            to="/ventajas"
+            className={`transition-colors ${
+              location.pathname === '/ventajas' 
+                ? 'text-beige' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
           >
             Ventajas
-          </button>
-          <button 
-            onClick={() => scrollToSection('contacto')}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+          </Link>
+          <Link 
+            to="/contacto"
+            className={`transition-colors ${
+              location.pathname === '/contacto' 
+                ? 'text-beige' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
           >
             Contacto
-          </button>
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-4">
