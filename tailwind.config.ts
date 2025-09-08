@@ -47,18 +47,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        /* Custom Tickr colors */
+        /* Premium Tickr colors */
         navy: {
           DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
         },
         beige: {
           DEFAULT: "hsl(var(--beige))",
           dark: "hsl(var(--beige-dark))",
         },
         surface: {
-          DEFAULT: "hsl(var(--dark-surface))",
-          darker: "hsl(var(--darker-surface))",
+          DEFAULT: "hsl(var(--surface))",
+          darker: "hsl(var(--surface-darker))",
+          elevated: "hsl(var(--surface-elevated))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

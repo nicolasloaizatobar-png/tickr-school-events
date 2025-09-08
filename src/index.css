@@ -8,58 +8,62 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Dark theme with premium colors for Tickr */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 98%;
+    /* Premium Dark Theme - Pure Black with Beige Accents */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Navy blue as primary accent */
-    --primary: 217 33% 17%;
-    --primary-foreground: 0 0% 98%;
+    /* Beige as primary accent */
+    --primary: 45 31% 83%;
+    --primary-foreground: 0 0% 0%;
 
-    /* Beige as secondary accent */
-    --secondary: 39 32% 75%;
-    --secondary-foreground: 0 0% 8%;
+    /* Dark secondary */
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 15%;
+    --muted: 0 0% 12%;
     --muted-foreground: 0 0% 65%;
 
-    /* Navy blue accent */
-    --accent: 217 33% 17%;
-    --accent-foreground: 0 0% 98%;
+    /* Beige accent */
+    --accent: 45 31% 83%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 217 33% 17%;
+    --border: 0 0% 16%;
+    --input: 0 0% 8%;
+    --ring: 45 31% 83%;
 
     --radius: 0.75rem;
 
-    /* Custom design tokens for Tickr */
-    --navy: 217 33% 17%;
-    --navy-light: 217 33% 25%;
-    --beige: 39 32% 75%;
-    --beige-dark: 39 32% 65%;
-    --dark-surface: 0 0% 12%;
-    --darker-surface: 0 0% 8%;
+    /* Premium Custom Tokens */
+    --navy: 220 39% 11%;
+    --beige: 45 31% 83%;
+    --beige-dark: 45 31% 75%;
+    --surface: 0 0% 4%;
+    --surface-darker: 0 0% 0%;
+    --surface-elevated: 0 0% 8%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 8%), hsl(217 33% 17% / 0.8));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 12%), hsl(0 0% 15%));
+    /* Premium Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%), hsl(45 31% 83% / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 4%), hsl(0 0% 8%));
+    --gradient-premium: linear-gradient(135deg, hsl(45 31% 83% / 0.05), transparent);
     
-    /* Shadows */
-    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
-    --shadow-button: 0 4px 20px hsl(217 33% 17% / 0.3);
+    /* Elegant Shadows with Beige Glow */
+    --shadow-card: 0 20px 60px -10px hsl(0 0% 0% / 0.8);
+    --shadow-button: 0 8px 32px hsl(45 31% 83% / 0.2);
+    --shadow-glow: 0 0 60px hsl(45 31% 83% / 0.15);
     
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Apple-style Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -127,27 +131,72 @@ All colors MUST be HSL.
   }
 }
 
-/* Premium animations */
+/* Premium Apple-style animations */
 .hover-scale {
-  transition: transform 0.2s ease;
+  transition: var(--transition-fast);
 }
 
 .hover-scale:hover {
   transform: scale(1.02);
 }
 
-/* Fade in animation */
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-@keyframes fadeIn {
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: var(--transition-smooth);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: var(--transition-fast);
+}
+
+/* Enhanced fade in animation */
+.animate-fade-in {
+  animation: fadeInPremium 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes fadeInPremium {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
+}
+
+/* Premium button animations */
+.button-premium {
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+  transition: var(--transition-smooth);
+}
+
+.button-premium:hover::before {
+  left: 100%;
 }
