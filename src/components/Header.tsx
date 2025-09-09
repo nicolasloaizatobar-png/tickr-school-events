@@ -35,6 +35,16 @@ const Header = () => {
             Eventos
           </Link>
           <Link 
+            to="/comprar"
+            className={`transition-colors ${
+              location.pathname === '/comprar' 
+                ? 'text-primary' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            Comprar boletas
+          </Link>
+          <Link 
             to="/ventajas"
             className={`transition-colors ${
               location.pathname === '/ventajas' 

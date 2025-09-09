@@ -17,6 +17,8 @@ import CrearEvento from "./pages/CrearEvento";
 import OrganizadorCrearEvento from "./pages/OrganizadorCrearEvento";
 import OrganizadorEventos from "./pages/OrganizadorEventos";
 import Checkout from "./pages/Checkout";
+import Comprar from "./pages/Comprar";
+import EventoDetalle from "./pages/EventoDetalle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/eventos" element={<Eventos />} />
+            <Route path="/comprar" element={<Comprar />} />
+            <Route path="/evento/:id" element={<EventoDetalle />} />
             <Route path="/ventajas" element={<Ventajas />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/login" element={<Login />} />
