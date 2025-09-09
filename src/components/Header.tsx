@@ -9,8 +9,8 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/home" className="flex items-center space-x-2">
-          <div className="text-2xl font-bold text-foreground hover:text-primary transition-colors">Tickr</div>
+        <Link to="/home" className="flex items-center space-x-2 group">
+          <div className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors cursor-pointer">Tickr</div>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-8">
