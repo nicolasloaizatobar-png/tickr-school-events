@@ -14,6 +14,7 @@ import Register from "./pages/Register";
 import CompradorEventos from "./pages/CompradorEventos";
 import OrganizadorDashboard from "./pages/OrganizadorDashboard";
 import CrearEvento from "./pages/CrearEvento";
+import OrganizadorCrearEvento from "./pages/OrganizadorCrearEvento";
 import OrganizadorEventos from "./pages/OrganizadorEventos";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
@@ -68,6 +69,14 @@ const App = () => (
               element={
                 <ProtectedRoute requiredRole="organizador">
                   <CrearEvento />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/organizador/crear-evento" 
+              element={
+                <ProtectedRoute requiredRole="organizador">
+                  <OrganizadorCrearEvento />
                 </ProtectedRoute>
               } 
             />
