@@ -27,6 +27,27 @@ const EventCard = ({
   availableTickets 
 }: EventCardProps) => {
   const navigate = useNavigate();
+  
+  const handleViewDetails = () => {
+    const eventData = {
+      id,
+      image,
+      school,
+      eventName,
+      date,
+      time,
+      location,
+      price,
+      availableTickets
+    };
+    localStorage.setItem('selectedEvent', JSON.stringify(eventData));
+    navigate('/verdetalles');
+  };
+
+  const handlePurchase = () => {
+    navigate('/comprar');
+  };
+
   return (
     <Card className="bg-card border-border hover:shadow-[var(--shadow-card)] transition-all duration-300 hover:scale-105 overflow-hidden">
       <div className="aspect-square overflow-hidden">
@@ -65,13 +86,13 @@ const EventCard = ({
         <div className="flex gap-3">
           <Button 
             variant="outline"
-            onClick={() => navigate(`/verdetalles/${id || '1'}`)}
+            onClick={handleViewDetails}
             className="flex-1 border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground"
           >
             <Eye className="w-4 h-4 mr-2" />
             Ver detalles
           </Button>
-          <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button onClick={handlePurchase} className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
             Comprar boleta
           </Button>
         </div>

@@ -1,81 +1,56 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, MapPin, Users, Building } from "lucide-react";
 import Header from "@/components/Header";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  event_date: string;
-  venue: string;
-  price: number;
-  available_tickets: number;
-  max_capacity: number;
-  image_url: string;
-  organizer_id: string;
+interface EventData {
+  id?: string;
+  image: string;
+  school: string;
+  eventName: string;
+  date: string;
+  time: string;
+  location: string;
+  price: string;
+  availableTickets: number;
 }
 
 const VerDetalles = () => {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [event, setEvent] = useState<Event | null>(null);
+  const [eventData, setEventData] = useState<EventData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (id) {
-      fetchEvent(id);
-    }
-  }, [id]);
-
-  const fetchEvent = async (eventId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from('events')
-        .select('*')
-        .eq('id', eventId)
-        .single();
-
-      if (error) throw error;
-      setEvent(data);
-    } catch (error) {
-      console.error('Error fetching event:', error);
+    const storedEvent = localStorage.getItem('selectedEvent');
+    if (storedEvent) {
+      try {
+        const parsedEvent = JSON.parse(storedEvent);
+        setEventData(parsedEvent);
+      } catch (error) {
+        console.error('Error parsing event data:', error);
+        toast({
+          title: "Error",
+          description: "No se pudo cargar el evento",
+          variant: "destructive",
+        });
+        navigate('/eventos');
+      }
+    } else {
       toast({
         title: "Error",
-        description: "No se pudo cargar el evento",
+        description: "No se encontró información del evento",
         variant: "destructive",
       });
       navigate('/eventos');
-    } finally {
-      setLoading(false);
     }
-  };
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0
-    }).format(price);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('es-ES', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
+    setLoading(false);
+  }, [navigate, toast]);
 
   const handlePurchase = () => {
-    navigate(`/evento/${id}`);
+    navigate('/comprar');
   };
 
   if (loading) {
@@ -94,7 +69,7 @@ const VerDetalles = () => {
     );
   }
 
-  if (!event) {
+  if (!eventData) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
@@ -120,7 +95,7 @@ const VerDetalles = () => {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(${event.image_url || "/placeholder.svg"})`,
+              backgroundImage: `url(${eventData.image || "/placeholder.svg"})`,
             }}
           />
           <div className="absolute inset-0 bg-black/60" />
@@ -137,16 +112,16 @@ const VerDetalles = () => {
             
             <div className="max-w-4xl">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
-                {event.title}
+                {eventData.eventName}
               </h1>
               <div className="flex items-center gap-6 text-white/80 text-xl">
                 <div className="flex items-center">
                   <Building className="w-5 h-5 mr-2" />
-                  <span>Colegio San Carlos</span>
+                  <span>{eventData.school}</span>
                 </div>
                 <div className="flex items-center">
                   <Calendar className="w-5 h-5 mr-2" />
-                  <span>{formatDate(event.event_date)}</span>
+                  <span>{eventData.date} - {eventData.time}</span>
                 </div>
               </div>
             </div>
@@ -157,15 +132,15 @@ const VerDetalles = () => {
           {/* Key Information Block */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div className="bg-surface rounded-xl p-8 text-center border border-border hover:shadow-[var(--shadow-card)] transition-all duration-300">
-              <div className="text-3xl font-bold text-primary mb-2">{formatPrice(event.price)}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{eventData.price}</div>
               <p className="text-muted-foreground">Precio por boleta</p>
             </div>
             <div className="bg-surface rounded-xl p-8 text-center border border-border hover:shadow-[var(--shadow-card)] transition-all duration-300">
-              <div className="text-3xl font-bold text-foreground mb-2">{event.max_capacity}</div>
+              <div className="text-3xl font-bold text-foreground mb-2">500</div>
               <p className="text-muted-foreground">Aforo máximo</p>
             </div>
             <div className="bg-surface rounded-xl p-8 text-center border border-border hover:shadow-[var(--shadow-card)] transition-all duration-300">
-              <div className="text-3xl font-bold text-foreground mb-2">{event.available_tickets}</div>
+              <div className="text-3xl font-bold text-foreground mb-2">{eventData.availableTickets}</div>
               <p className="text-muted-foreground">Boletas disponibles</p>
             </div>
           </div>
@@ -175,7 +150,7 @@ const VerDetalles = () => {
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Descripción del evento</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                {event.description || "Una experiencia única que no te puedes perder. Este evento escolar reúne a toda la comunidad educativa para celebrar los logros y el talento de nuestros estudiantes."}
+                Una experiencia única que no te puedes perder. Este evento escolar reúne a toda la comunidad educativa para celebrar los logros y el talento de nuestros estudiantes.
               </p>
 
               <div className="space-y-4">
@@ -183,14 +158,14 @@ const VerDetalles = () => {
                   <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Ubicación</h3>
-                    <p className="text-muted-foreground">{event.venue}</p>
+                    <p className="text-muted-foreground">{eventData.location}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Users className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Capacidad</h3>
-                    <p className="text-muted-foreground">Hasta {event.max_capacity} asistentes</p>
+                    <p className="text-muted-foreground">Hasta 500 asistentes</p>
                   </div>
                 </div>
               </div>
@@ -230,15 +205,15 @@ const VerDetalles = () => {
               </p>
               <Button 
                 onClick={handlePurchase}
-                disabled={event.available_tickets <= 0}
+                disabled={eventData.availableTickets <= 0}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-6 text-lg font-semibold rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 size="lg"
               >
-                {event.available_tickets <= 0 ? "Agotado" : "Comprar boleta"}
+                {eventData.availableTickets <= 0 ? "Agotado" : "Comprar boleta"}
               </Button>
-              {event.available_tickets <= 5 && event.available_tickets > 0 && (
+              {eventData.availableTickets <= 5 && eventData.availableTickets > 0 && (
                 <p className="text-amber-400 text-sm mt-4">
-                  ¡Solo quedan {event.available_tickets} boletas!
+                  ¡Solo quedan {eventData.availableTickets} boletas!
                 </p>
               )}
             </div>
