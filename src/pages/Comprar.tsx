@@ -51,19 +51,23 @@ const Comprar = () => {
                          event.venue?.toLowerCase().includes(searchTerm.toLowerCase());
     
     let matchesPrice = true;
-    if (priceFilter === "low") matchesPrice = event.price <= 20000;
-    if (priceFilter === "medium") matchesPrice = event.price > 20000 && event.price <= 50000;
-    if (priceFilter === "high") matchesPrice = event.price > 50000;
+    if (priceFilter && priceFilter !== "all") {
+      if (priceFilter === "low") matchesPrice = event.price <= 20000;
+      if (priceFilter === "medium") matchesPrice = event.price > 20000 && event.price <= 50000;
+      if (priceFilter === "high") matchesPrice = event.price > 50000;
+    }
 
     let matchesDate = true;
-    if (dateFilter === "today") {
-      const today = new Date().toDateString();
-      matchesDate = new Date(event.event_date).toDateString() === today;
-    }
-    if (dateFilter === "week") {
-      const weekFromNow = new Date();
-      weekFromNow.setDate(weekFromNow.getDate() + 7);
-      matchesDate = new Date(event.event_date) <= weekFromNow;
+    if (dateFilter && dateFilter !== "all") {
+      if (dateFilter === "today") {
+        const today = new Date().toDateString();
+        matchesDate = new Date(event.event_date).toDateString() === today;
+      }
+      if (dateFilter === "week") {
+        const weekFromNow = new Date();
+        weekFromNow.setDate(weekFromNow.getDate() + 7);
+        matchesDate = new Date(event.event_date) <= weekFromNow;
+      }
     }
 
     return matchesSearch && matchesPrice && matchesDate;
@@ -120,7 +124,7 @@ const Comprar = () => {
                   <SelectValue placeholder="Filtrar por precio" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todos los precios</SelectItem>
+                  <SelectItem value="all">Todos los precios</SelectItem>
                   <SelectItem value="low">Hasta $20.000</SelectItem>
                   <SelectItem value="medium">$20.000 - $50.000</SelectItem>
                   <SelectItem value="high">Más de $50.000</SelectItem>
@@ -132,7 +136,7 @@ const Comprar = () => {
                   <SelectValue placeholder="Filtrar por fecha" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todas las fechas</SelectItem>
+                  <SelectItem value="all">Todas las fechas</SelectItem>
                   <SelectItem value="today">Hoy</SelectItem>
                   <SelectItem value="week">Esta semana</SelectItem>
                 </SelectContent>
