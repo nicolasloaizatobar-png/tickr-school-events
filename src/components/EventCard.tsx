@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin, Users, Eye } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface EventCardProps {
+  id?: string;
   image: string;
   school: string;
   eventName: string;
@@ -14,6 +16,7 @@ interface EventCardProps {
 }
 
 const EventCard = ({ 
+  id,
   image, 
   school, 
   eventName, 
@@ -23,6 +26,7 @@ const EventCard = ({
   price,
   availableTickets 
 }: EventCardProps) => {
+  const navigate = useNavigate();
   return (
     <Card className="bg-card border-border hover:shadow-[var(--shadow-card)] transition-all duration-300 hover:scale-105 overflow-hidden">
       <div className="aspect-square overflow-hidden">
@@ -54,9 +58,20 @@ const EventCard = ({
           </div>
         </div>
         
-        <div className="flex items-center justify-between">
+        <div className="mb-4">
           <div className="text-2xl font-bold text-foreground">{price}</div>
-          <Button className="bg-navy hover:bg-navy-light text-foreground">
+        </div>
+        
+        <div className="flex gap-3">
+          <Button 
+            variant="outline"
+            onClick={() => navigate(`/evento/${id || '1'}`)}
+            className="flex-1 border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground"
+          >
+            <Eye className="w-4 h-4 mr-2" />
+            Ver detalles
+          </Button>
+          <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
             Comprar boleta
           </Button>
         </div>

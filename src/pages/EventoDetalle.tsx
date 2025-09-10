@@ -211,13 +211,36 @@ const EventoDetalle = () => {
                 </div>
                 <div className="flex items-center text-muted-foreground">
                   <Users className="w-5 h-5 mr-3" />
-                  <span className="text-lg">{event.available_tickets} boletas disponibles</span>
+                  <span className="text-lg">{event.available_tickets} de {event.max_capacity} boletas disponibles</span>
                 </div>
               </div>
 
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-foreground mb-4">Descripción</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">{event.description}</p>
+              </div>
+
+              {/* Event Characteristics */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Características del evento</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-surface rounded-lg p-4">
+                    <p className="text-muted-foreground">Tipo de evento</p>
+                    <p className="text-foreground font-semibold">Evento escolar</p>
+                  </div>
+                  <div className="bg-surface rounded-lg p-4">
+                    <p className="text-muted-foreground">Aforo máximo</p>
+                    <p className="text-foreground font-semibold">{event.max_capacity} personas</p>
+                  </div>
+                  <div className="bg-surface rounded-lg p-4">
+                    <p className="text-muted-foreground">Lugar</p>
+                    <p className="text-foreground font-semibold">{event.venue}</p>
+                  </div>
+                  <div className="bg-surface rounded-lg p-4">
+                    <p className="text-muted-foreground">Edad permitida</p>
+                    <p className="text-foreground font-semibold">Todas las edades</p>
+                  </div>
+                </div>
               </div>
 
               {/* Price and Purchase */}

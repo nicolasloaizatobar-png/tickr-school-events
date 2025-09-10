@@ -15,16 +15,6 @@ const Header = () => {
         
         <nav className="hidden md:flex items-center space-x-8">
           <Link 
-            to="/home"
-            className={`transition-colors ${
-              location.pathname === '/' || location.pathname === '/home' 
-                ? 'text-primary' 
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            Home
-          </Link>
-          <Link 
             to="/eventos"
             className={`transition-colors ${
               location.pathname === '/eventos' 
@@ -33,16 +23,6 @@ const Header = () => {
             }`}
           >
             Eventos
-          </Link>
-          <Link 
-            to="/comprar"
-            className={`transition-colors ${
-              location.pathname === '/comprar' 
-                ? 'text-primary' 
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            Comprar boletas
           </Link>
           <Link 
             to="/ventajas"

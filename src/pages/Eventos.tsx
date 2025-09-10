@@ -17,6 +17,7 @@ const Eventos = () => {
 
   const events = [
     {
+      id: "1",
       image: graduationImage,
       school: "Colegio San Carlos",
       eventName: "Ceremonia de Graduación 2024",
@@ -28,6 +29,7 @@ const Eventos = () => {
       category: "graduation"
     },
     {
+      id: "2",
       image: culturalImage,
       school: "Instituto María Auxiliadora",
       eventName: "Festival Cultural Internacional",
@@ -39,6 +41,7 @@ const Eventos = () => {
       category: "cultural"
     },
     {
+      id: "3",
       image: sportsImage,
       school: "Liceo Moderno",
       eventName: "Juegos Intercolegiados",
@@ -50,6 +53,7 @@ const Eventos = () => {
       category: "sports"
     },
     {
+      id: "4",
       image: graduationImage,
       school: "Colegio La Presentación",
       eventName: "Grados Bachilleres 2024",
@@ -61,6 +65,7 @@ const Eventos = () => {
       category: "graduation"
     },
     {
+      id: "5",
       image: culturalImage,
       school: "Instituto Técnico Industrial",
       eventName: "Muestra Artística Anual",
@@ -72,6 +77,7 @@ const Eventos = () => {
       category: "cultural"
     },
     {
+      id: "6",
       image: sportsImage,
       school: "Colegio Salesiano",
       eventName: "Campeonato de Fútbol",
