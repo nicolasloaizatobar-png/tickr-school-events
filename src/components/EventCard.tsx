@@ -65,7 +65,7 @@ const EventCard = ({
         <div className="flex gap-3">
           <Button 
             variant="outline"
-            onClick={() => navigate(`/evento/${id || '1'}`)}
+            onClick={() => navigate(`/verdetalles/${id || '1'}`)}
             className="flex-1 border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground"
           >
             <Eye className="w-4 h-4 mr-2" />
