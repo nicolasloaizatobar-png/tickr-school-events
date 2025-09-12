@@ -48,7 +48,7 @@ const Header = () => {
               className="text-muted-foreground hover:text-foreground transition-colors text-lg"
               onClick={() => setIsOpen(false)}
             >
-              Dashboard
+              {userProfile?.role === 'organizador' ? 'Mis eventos' : 'Dashboard'}
             </Link>
             <Button 
               variant="outline" 
@@ -116,7 +116,7 @@ const Header = () => {
                 to={userProfile?.role === 'organizador' ? '/organizador/dashboard' : '/comprador/eventos'}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                Dashboard
+                {userProfile?.role === 'organizador' ? 'Mis eventos' : 'Dashboard'}
               </Link>
               <Button 
                 variant="outline" 
