@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
@@ -92,7 +92,10 @@ export default function OrganizadorDashboard() {
       {/* Header */}
       <header className="bg-surface-darker border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-foreground">Tickr - Dashboard</h1>
+          <h1 className="text-2xl font-bold text-foreground">
+            <Link to="/" className="hover:underline transition-all duration-200">Tickr</Link>
+            <span> - Dashboard</span>
+          </h1>
           <div className="flex items-center space-x-4">
             <span className="text-muted-foreground">Hola, {userProfile?.full_name}</span>
             <Button variant="outline" onClick={handleSignOut}>
