@@ -55,36 +55,6 @@ const Ventajas = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "María González",
-      role: "Rectora",
-      school: "Colegio San José",
-      quote: "Tickr revolucionó nuestra forma de vender boletas. Ya no tenemos que preocuparnos por el manejo de dinero físico.",
-      rating: 5
-    },
-    {
-      name: "Carlos Ramírez",
-      role: "Coordinador de Eventos",
-      school: "Instituto La Salle",
-      quote: "El sistema de QR ha eliminado completamente las boletas falsas. Ahora tenemos control total del evento.",
-      rating: 5
-    },
-    {
-      name: "Ana Patricia López",
-      role: "Tesorera",
-      school: "Colegio Marista",
-      quote: "Los reportes en tiempo real nos permiten tomar decisiones inmediatas. Es increíblemente útil.",
-      rating: 5
-    },
-    {
-      name: "Luis Fernando Torres",
-      role: "Director Administrativo",
-      school: "Gimnasio Moderno",
-      quote: "Nuestros padres de familia están encantados con la facilidad de compra. Todo desde su celular.",
-      rating: 5
-    }
-  ];
 
   const benefits = [
     {
@@ -221,45 +191,6 @@ const Ventajas = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Lo que dicen nuestros clientes
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Colegios que ya confían en Tickr
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-surface border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-beige text-beige" />
-                    ))}
-                  </div>
-                  <blockquote className="text-lg text-foreground mb-4 italic">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div className="flex items-center gap-4">
-                    <div>
-                      <p className="font-semibold text-foreground">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                      <Badge variant="outline" className="mt-1 border-beige text-beige">
-                        {testimonial.school}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Organizer Exclusive Section */}
       {userProfile?.role === 'organizador' && (
