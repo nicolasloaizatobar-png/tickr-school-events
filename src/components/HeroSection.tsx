@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-bg.jpg";
 const HeroSection = () => {
-  const scrollToEvents = () => {
-    document.getElementById('eventos')?.scrollIntoView({
-      behavior: 'smooth'
-    });
+  const navigate = useNavigate();
+  
+  const goToEvents = () => {
+    navigate('/eventos');
   };
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -28,7 +29,7 @@ const HeroSection = () => {
             Olvídate de filas y pérdidas de dinero. Todo digital, todo seguro.
           </p>
           
-          <Button onClick={scrollToEvents} className="bg-navy hover:bg-navy-light text-foreground text-lg px-8 py-6 h-auto shadow-[var(--shadow-button)] transition-all duration-300 hover:shadow-lg hover:scale-105">
+          <Button onClick={goToEvents} className="bg-navy hover:bg-navy-light text-foreground text-lg px-8 py-6 h-auto shadow-[var(--shadow-button)] transition-all duration-300 hover:shadow-lg hover:scale-105">
             Ver eventos disponibles
           </Button>
         </div>

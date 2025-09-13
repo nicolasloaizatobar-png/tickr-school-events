@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const CTASection = () => {
+  const navigate = useNavigate();
+  
+  const goToContact = () => {
+    navigate('/contacto');
+  };
   return (
     <section className="py-20 bg-surface">
       <div className="container mx-auto px-4 text-center">
@@ -15,6 +21,7 @@ const CTASection = () => {
           </p>
           
           <Button 
+            onClick={goToContact}
             className="bg-navy hover:bg-navy-light text-foreground text-lg px-12 py-6 h-auto shadow-[var(--shadow-button)] transition-all duration-300 hover:shadow-lg hover:scale-105"
           >
             Contactar ahora
