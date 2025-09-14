@@ -41,7 +41,7 @@ const Ventajas = () => {
     },
     {
       feature: "Validación de entrada",
-      traditional: "Boletas físicas falsificables",
+      traditional: "Personas que se cuelan con nombres ajenos",
       tickr: "QR único e infalsificable",
       traditionalIcon: X,
       tickrIcon: Check
