@@ -221,25 +221,18 @@ const Ventajas = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              ¿Listo para la <span className="text-beige">revolución</span>?
+              El futuro de tus eventos empieza aquí
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
               Únete a los colegios que ya están disfrutando de las ventajas de Tickr
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
                 onClick={() => navigate('/register')}
                 className="bg-beige text-surface-darker hover:bg-beige-dark text-lg px-8 py-6 h-auto"
               >
                 Crear mi primer evento
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-beige text-beige hover:bg-beige hover:text-surface-darker text-lg px-8 py-6 h-auto"
-              >
-                Ver demo en vivo
               </Button>
             </div>
           </div>
