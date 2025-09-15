@@ -143,9 +143,11 @@ const Eventos = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Todas las categorías</SelectItem>
-                  <SelectItem value="graduation">Graduaciones</SelectItem>
-                  <SelectItem value="cultural">Eventos Culturales</SelectItem>
+                  <SelectItem value="fiestas-escolares">Fiestas escolares</SelectItem>
+                  <SelectItem value="farras-universitarias">Farras universitarias</SelectItem>
+                  <SelectItem value="cultural">Eventos culturales</SelectItem>
                   <SelectItem value="sports">Deportivos</SelectItem>
+                  <SelectItem value="farras-externas">Farras externas</SelectItem>
                 </SelectContent>
               </Select>
 
